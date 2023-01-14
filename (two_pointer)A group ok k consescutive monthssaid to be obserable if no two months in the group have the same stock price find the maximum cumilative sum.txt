@@ -1,0 +1,75 @@
+//tc 6 3
+//1 2 3 7 3 5
+//ans=15
+#include <bits/stdc++.h>
+#define loop(i,a, n) for(inT i= a; i < n; ++i)
+#define inT long long int
+inT NNN=2147487409;
+inT NN=1000000007;  
+inT N1=999999999999999999;
+#define PB push_back
+#define PF push_front
+#define MP make_pair
+#define F first
+#define S second
+using namespace std;
+
+void super_duper_fast()
+{
+    #ifndef ONLINE_JUDGE
+        freopen("INPUTT.txt", "r", stdin);
+        freopen("OUTPUTT.txt", "w", stdout);
+    #endif
+    std::ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+}
+
+void solve(){
+    inT n,m,xx,yy,c,d,k;
+    cin>>n>>k;
+    vector<inT>v1(n+1);
+    loop(x,1,n+1) cin>>v1[x];
+    map<inT,inT>map1;
+    auto v2=v1;
+    loop(x,2,n+1) v2[x]+=v2[x-1];
+    inT i=2,j=k+1,sum=0;
+    loop(x,1,k+1){
+        if(map1[v1[x]]!=0){
+            i=map1[v1[x]]+1;
+        }
+        map1[v1[x]]=x;
+    }
+    if(j-i==k-1 and map1[v1[j]]==0) sum=max(sum,v2[j]-v2[i-1]);
+    cout<<sum<<endl;
+    while(i<n+1 and j<n+1){
+        if(map1[v1[j]]!=0 and j-map1[v1[j]]<=k-1){
+            i=map1[v1[j]]+1;
+            map1[v1[j]]=j;
+            j++;
+        }
+        else if(j-i<k-1) j++;
+        else{
+            sum=max(sum,v2[j]-v2[i-1]);
+            map1[v1[j]]=j;
+            i++,j++;
+        }
+    }
+    if(sum==0) cout<<-1<<endl;
+    else cout<<sum<<endl;
+}
+void test_case()
+{
+    inT t;
+    cin>>t;
+    inT aa1=t;
+    while(t-->0){ 
+      //cout<<"Case "<<"#"<<aa1-t<<": ";
+        solve(); 
+    }
+}
+int main(){
+    super_duper_fast();
+    //solve();
+    test_case();
+}

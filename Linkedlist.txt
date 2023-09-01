@@ -1,0 +1,106 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+    public:
+        int data;
+        Node* next;
+
+        Node(int data){
+            this->data=data;
+            this->next=NULL;
+        }
+};
+
+
+class LL{
+    private:
+        Node* head;
+    
+    public:
+        LL(){
+            head=NULL;
+        }
+
+        Node* getHead() {
+            return head;
+        }
+
+        void insert(int data){
+            Node* val=new Node(data);
+            if(!head){
+                head=val;
+            }
+            else{
+                Node* temp=head;
+                while(temp->next!=NULL){
+                    temp=temp->next;
+                }
+                temp->next=val;
+            }
+        }
+
+void print(){
+            Node* temp=head;
+            while(temp!=NULL){
+                cout<<temp->data<<" ";
+                temp=temp->next;
+            }
+        }
+
+        Node* reverse(Node* head,int k){
+            Node* prev=NULL;
+            Node* next=NULL;
+            Node* curr=head;
+            int count=1;
+
+            while(count<=k and curr!=NULL){
+                next=curr->next;
+                curr->next=prev;
+                prev=curr;
+                curr=next;
+                count++;
+            }
+            if(next!=NULL){
+                head->next=reverse(next,k);
+            }
+            head=prev;
+            return head;;
+        }
+        void reverseIn(int k) {
+            head = reverse(head, k);
+        }
+
+        int detectcycle() {
+        Node* slow = head;
+        Node* fast = head;
+        while (slow != NULL && fast != NULL && fast->next != NULL) {
+            std::cout << "slow: " << slow->data << ", fast: " << fast->data << std::endl;
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) {
+                return 1;
+            }
+        }
+return 0;
+}
+
+};
+int main(){
+
+    LL list;
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+    list.insert(4);
+    list.insert(5);
+    list.getHead()->next->next->next->next = list.getHead()->next;
+    list.print();
+    cout<<"Reverse"<<endl;
+    int k=2;
+    //list.reverseIn(k);
+    list.print();
+    cout<<endl;
+    //if(list.detectcycle()==1) cout<<"TRUE"<<endl;
+    //else cout<<"FALSE"<<endl;
+}                                                                                         

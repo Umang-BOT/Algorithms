@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+#define loop(i,a, n) for(inT i= a; i < n; ++i)
+#define inT long long int
+inT NNN=2147487409;
+inT NN=1000000007;  
+inT N1=999999999999999999;
+#define PB push_back
+#define PF push_front
+#define MP make_pair
+#define F first
+#define S second
+using namespace std;
+
+void solve(){
+}
+
+void test_case()
+{
+    inT t;
+    cin>>t;
+    inT aa1=t;
+    while(t-->0){ 
+      //cout<<"Case "<<"#"<<aa1-t<<": ";
+        solve(); 
+    }
+}
+int main(){
+    super_duper_fast();
+    solve();
+    //test_case();
+}
